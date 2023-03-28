@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/react-ts-tailwind-boilerplate',
+  base: '/todo-firebase',
   plugins: [react()],
 });
