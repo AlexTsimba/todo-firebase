@@ -29,7 +29,9 @@
     "react/react-in-jsx-scope": "off",
     "react/button-has-type": "off",
     "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/control-has-associated-label": "off",
     "prettier/prettier": "off",
+    "react/function-component-definition": "off",
     "semi": "error",
     "jsx-quotes": "error"
   },
