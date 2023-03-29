@@ -1,8 +1,8 @@
-import { getDocs, collection } from 'firebase/firestore';
+import { getDocs, collection, updateDoc, deleteDoc, doc } from 'firebase/firestore';
 import db from '../firebase';
 import { Todo } from '../Types/Todo';
 
-const fetchTodos = async (setTodos: (todos: Todo[]) => void) => {
+export const fetchTodos = async (setTodos: (todos: Todo[]) => void) => {
   const querySnapshot = await getDocs(collection(db, 'todos'));
 
   const todosData = querySnapshot.docs.map((todo) => ({
@@ -13,4 +13,12 @@ const fetchTodos = async (setTodos: (todos: Todo[]) => void) => {
   setTodos(todosData);
 };
 
-export default fetchTodos;
+export const toggleComplete = async (todo: Todo) => {
+  await updateDoc(doc(db, 'todos', todo.id), {
+    completed: !todo.completed,
+  });
+};
+
+export const deleteTodo = async (todo: Todo) => {
+    await deleteDoc(doc(db, 'todos', todo.id));
+  };
