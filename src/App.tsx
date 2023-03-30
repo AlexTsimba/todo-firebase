@@ -1,7 +1,6 @@
+import { Reorder } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
-import { AnimatePresence } from 'framer-motion';
-// import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import TodoItem from './components/TodoItem';
 import { Todo } from './Types/Todo';
 import { fetchTodos, deleteTodo, addTodo } from './utils/Utils';
@@ -68,19 +67,13 @@ export default function App() {
             <AiOutlinePlus size={30} />
           </button>
         </form>
-        <ul>
-          <AnimatePresence>
-            {todos.map((todo) => {
-              return (
-                <TodoItem
-                  todo={todo}
-                  key={todo.id}
-                  onDelete={HandleDeleteTodo}
-                />
-              );
-            })}
-          </AnimatePresence>
-        </ul>
+        <Reorder.Group values={todos} onReorder={setTodos}>
+          {todos.map((todo) => {
+            return (
+              <TodoItem todo={todo} key={todo.id} onDelete={HandleDeleteTodo} />
+            );
+          })}
+        </Reorder.Group>
         {todos.length > 0 && (
           <p className={style.counter}>You have {todos.length} todos left</p>
         )}

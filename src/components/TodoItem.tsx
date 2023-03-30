@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FiTrash } from 'react-icons/fi';
 import classNames from 'classnames';
-import { motion } from 'framer-motion';
+import { Reorder } from 'framer-motion';
 import { Todo } from '../Types/Todo';
 import { toggleComplete } from '../utils/Utils';
 
@@ -28,11 +28,11 @@ const TodoItem: React.FC<Props> = ({ todo, onDelete }) => {
   };
 
   return (
-    <motion.li
-      className={classNames(style.item, 'group')}
-      initial={{ opacity: 0, x: 50 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -50 }}
+    <Reorder.Item
+      className="item my-2 flex justify-center rounded-l bg-white px-8 py-4 shadow-lg"
+      key={todo.id}
+      id={todo.id}
+      value={todo}
     >
       <label
         className={classNames(style.todo, {
@@ -57,7 +57,7 @@ const TodoItem: React.FC<Props> = ({ todo, onDelete }) => {
       >
         <FiTrash />
       </button>
-    </motion.li>
+    </Reorder.Item>
   );
 };
 
