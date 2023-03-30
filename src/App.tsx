@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { AnimatePresence } from 'framer-motion';
+// import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import TodoItem from './components/TodoItem';
 import { Todo } from './Types/Todo';
 import { fetchTodos, deleteTodo, addTodo } from './utils/Utils';
@@ -36,7 +37,7 @@ export default function App() {
       const newTodo = {
         name: input,
         completed: false,
-        createdAt: new Date(),
+        order: todos.length,
       };
 
       addTodo(newTodo);
