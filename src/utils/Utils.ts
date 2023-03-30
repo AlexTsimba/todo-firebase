@@ -11,16 +11,6 @@ import {
 import db from '../firebase';
 import { Todo } from '../Types/Todo';
 
-// export const fetchTodos = async (setTodos: (todos: Todo[]) => void) => {
-//   const querySnapshot = await getDocs(collection(db, 'todos'));
-
-//   const todosData = querySnapshot.docs.map((todo) => ({
-//     id: todo.id,
-//     ...todo.data(),
-//   })) as unknown as Todo[];
-
-//   setTodos(todosData);
-// };
 export const fetchTodos = async (setTodos: (todos: Todo[]) => void) => {
   const querySnapshot = await getDocs(query(collection(db, 'todos'), orderBy('createdAt', 'desc')));
 
