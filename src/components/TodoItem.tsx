@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { FiTrash } from 'react-icons/fi';
 import classNames from 'classnames';
-import { Reorder } from 'framer-motion';
+import { Reorder, useMotionValue } from 'framer-motion';
 import { Todo } from '../Types/Todo';
 import { toggleComplete } from '../utils/Utils';
+import useRaisedShadow from '../utils/use-raized-shadow';
 
 const style = {
   item: `transition duration-300 ease-in-out group item flex justify-center justify-between bg-white my-2 px-8 py-4 rounded-lg hover:bg-slate-300 shadow-lg`,
@@ -22,6 +23,9 @@ interface Props {
 const TodoItem: React.FC<Props> = ({ todo, onDelete }) => {
   const [completed, setCompleted] = useState<boolean>(todo.completed);
 
+  const y = useMotionValue(0);
+  const boxShadow = useRaisedShadow(y);
+
   const handleToggle = async () => {
     await toggleComplete(todo);
     setCompleted(!completed);
@@ -29,34 +33,36 @@ const TodoItem: React.FC<Props> = ({ todo, onDelete }) => {
 
   return (
     <Reorder.Item
-      className="item my-2 flex justify-center rounded-l bg-white px-8 py-4 shadow-lg"
-      key={todo.id}
-      id={todo.id}
       value={todo}
+      id={todo.id}
+      style={{ boxShadow, y }}
+      whileDrag={{}}
     >
-      <label
-        className={classNames(style.todo, {
-          [style.completed]: completed,
-        })}
-      >
-        <input
-          type="checkbox"
-          onChange={handleToggle}
-          checked={completed}
-          className={style.checkbox}
-        />
-        {todo.name}
-      </label>
-      <button
-        className={classNames(
-          style.button,
-          style.visible,
-          'group-hover:visible'
-        )}
-        onClick={() => onDelete(todo)}
-      >
-        <FiTrash />
-      </button>
+      <div className="item my-2 flex justify-center rounded-l bg-white px-8 py-4 shadow-lg">
+        <label
+          className={classNames(style.todo, {
+            [style.completed]: completed,
+          })}
+        >
+          <input
+            type="checkbox"
+            onChange={handleToggle}
+            checked={completed}
+            className={style.checkbox}
+          />
+          {todo.name}
+        </label>
+        <button
+          className={classNames(
+            style.button,
+            style.visible,
+            'group-hover:visible'
+          )}
+          onClick={() => onDelete(todo)}
+        >
+          <FiTrash />
+        </button>
+      </div>
     </Reorder.Item>
   );
 };

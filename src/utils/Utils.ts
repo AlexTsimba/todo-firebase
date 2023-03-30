@@ -8,12 +8,12 @@ import {
   query,
   orderBy,
 } from 'firebase/firestore';
-import db from '../firebase';
+import db from '../../firebase';
 import { Todo } from '../Types/Todo';
 
 export const fetchTodos = async (setTodos: (todos: Todo[]) => void) => {
   const querySnapshot = await getDocs(
-    query(collection(db, 'todos'), orderBy('order', 'desc'))
+    query(collection(db, 'todos'), orderBy('order', 'asc'))
   );
 
   const todosData = querySnapshot.docs.map((todo, index) => ({
@@ -35,7 +35,7 @@ export const addTodo = async (todo: Omit<Todo, 'id'>) => {
   await addDoc(collection(db, 'todos'), {
     name: todo.name,
     completed: todo.completed,
-    order: todo.order
+    order: todo.order,
   });
 };
 
@@ -44,7 +44,7 @@ export const deleteTodo = async (todo: Todo) => {
   const todosSnapshot = await getDocs(todosRef);
 
   const filteredTodos: Todo[] = todosSnapshot.docs
-    .filter(item => item.id !== todo.id)
+    .filter((item) => item.id !== todo.id)
     .map((todoToDelete, index) => ({
       id: todoToDelete.id,
       name: todoToDelete.data().name,
@@ -53,9 +53,24 @@ export const deleteTodo = async (todo: Todo) => {
     }));
 
   await Promise.all(
-    filteredTodos.map(filteredTodo => updateDoc(doc(todosRef, filteredTodo.id), filteredTodo as { [x: string]: any; }))
+    filteredTodos.map((filteredTodo) =>
+      updateDoc(
+        doc(todosRef, filteredTodo.id),
+        filteredTodo as { [x: string]: any }
+      )
+    )
   );
   await deleteDoc(doc(db, 'todos', todo.id));
 };
 
+export const updateTodosOrder = async (updatedTodos: Todo[]) => {
+  const todosRef = collection(db, 'todos');
 
+  await Promise.all(
+    updatedTodos.map((updatedTodo) =>
+      updateDoc(doc(todosRef, updatedTodo.id), {
+        order: updatedTodo.order,
+      })
+    )
+  );
+};

@@ -3,7 +3,12 @@ import { useEffect, useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import TodoItem from './components/TodoItem';
 import { Todo } from './Types/Todo';
-import { fetchTodos, deleteTodo, addTodo } from './utils/Utils';
+import {
+  fetchTodos,
+  deleteTodo,
+  addTodo,
+  updateTodosOrder,
+} from './utils/Utils';
 
 const style = {
   bg: `min-h-screen w-screen overflow-hidden p-4 bg-gradient-to-r from-blue-300 to-blue-400`,
@@ -23,7 +28,7 @@ export default function App() {
   useEffect(() => {
     fetchTodos(setTodos);
     setProcessing(false);
-  }, [processing]);
+  }, [processing, setTodos]);
 
   const handlInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value);
@@ -50,6 +55,19 @@ export default function App() {
     setTodos((prevTodos) => prevTodos.filter((t) => t.id !== todo.id));
   };
 
+  const handleReorder = (reorderedTodos: Todo[]) => {
+    const updatedTodos = reorderedTodos.map((todo, index) => {
+      return {
+        ...todo,
+        order: index,
+      };
+    });
+    setTodos(updatedTodos);
+    updateTodosOrder(updatedTodos);
+  };
+
+  console.log(todos);
+
   return (
     <div className={style.bg}>
       <div className={style.container}>
@@ -67,7 +85,7 @@ export default function App() {
             <AiOutlinePlus size={30} />
           </button>
         </form>
-        <Reorder.Group values={todos} onReorder={setTodos}>
+        <Reorder.Group values={todos} onReorder={handleReorder}>
           {todos.map((todo) => {
             return (
               <TodoItem todo={todo} key={todo.id} onDelete={HandleDeleteTodo} />
