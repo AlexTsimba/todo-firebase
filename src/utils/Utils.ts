@@ -12,7 +12,9 @@ import db from '../firebase';
 import { Todo } from '../Types/Todo';
 
 export const fetchTodos = async (setTodos: (todos: Todo[]) => void) => {
-  const querySnapshot = await getDocs(query(collection(db, 'todos'), orderBy('createdAt', 'desc')));
+  const querySnapshot = await getDocs(
+    query(collection(db, 'todos'), orderBy('createdAt', 'desc'))
+  );
 
   const todosData = querySnapshot.docs.map((todo) => ({
     id: todo.id,
@@ -21,8 +23,6 @@ export const fetchTodos = async (setTodos: (todos: Todo[]) => void) => {
 
   setTodos(todosData);
 };
-
-
 
 export const toggleComplete = async (todo: Todo) => {
   await updateDoc(doc(db, 'todos', todo.id), {
@@ -37,7 +37,6 @@ export const addTodo = async (todo: Omit<Todo, 'id'>) => {
     createdAt: todo.createdAt,
   });
 };
-
 
 export const deleteTodo = async (todo: Todo) => {
   await deleteDoc(doc(db, 'todos', todo.id));
