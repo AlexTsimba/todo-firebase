@@ -1,7 +1,7 @@
 import { Reorder } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
-import TodoItem from './components/TodoItem';
+import TodoItem from './components/TodoItem/TodoItem';
 import { Todo } from './Types/Todo';
 import {
   fetchTodos,
@@ -65,8 +65,6 @@ export default function App() {
     setTodos(updatedTodos);
     updateTodosOrder(updatedTodos);
   };
-
-  console.log(todos);
 
   return (
     <div className={style.bg}>
