@@ -8,7 +8,7 @@ import useRaisedShadow from '../../utils/use-raized-shadow';
 
 const style = {
   item: `transition duration-300 ease-in-out my-2 flex justify-between rounded-l bg-white px-8 py-4 shadow-lg font-sans text-xl font-md hover:bg-slate-50`,
-  todo: `flex gap-4 items-center`,
+  todo: `flex gap-10 items-center`,
   completed: `line-through text-grey-500`,
   checkbox: `w-4 h-4 text-blue-600 bg-gray-100 border-gray-300`,
   button: `invisible group-hover:visible transition-delay-300 hover:scale-125 transform transition duration-300 ease-in-out hover:bg-yellow-400 rounded-full p-2 z-10`,

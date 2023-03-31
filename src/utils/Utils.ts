@@ -7,6 +7,7 @@ import {
   doc,
   query,
   orderBy,
+  writeBatch,
 } from 'firebase/firestore';
 import db from '../../firebase';
 import { Todo } from '../Types/Todo';
@@ -40,28 +41,19 @@ export const addTodo = async (todo: Omit<Todo, 'id'>) => {
 };
 
 export const deleteTodo = async (todo: Todo) => {
+  const todoRef = doc(db, 'todos', todo.id);
+  await deleteDoc(todoRef);
+  
   const todosRef = collection(db, 'todos');
   const todosSnapshot = await getDocs(todosRef);
 
-  const filteredTodos: Todo[] = todosSnapshot.docs
-    .filter((item) => item.id !== todo.id)
-    .map((todoToDelete, index) => ({
-      id: todoToDelete.id,
-      name: todoToDelete.data().name,
-      completed: todoToDelete.data().completed,
-      order: index,
-    }));
-
-  await Promise.all(
-    filteredTodos.map((filteredTodo) =>
-      updateDoc(
-        doc(todosRef, filteredTodo.id),
-        filteredTodo as { [x: string]: any }
-      )
-    )
-  );
-  await deleteDoc(doc(db, 'todos', todo.id));
+  const batch = writeBatch(db);
+  todosSnapshot.docs.forEach((dc, index) => {
+    batch.update(dc.ref, { order: index });
+  });
+  await batch.commit();
 };
+
 
 export const updateTodosOrder = async (updatedTodos: Todo[]) => {
   const todosRef = collection(db, 'todos');
@@ -74,3 +66,4 @@ export const updateTodosOrder = async (updatedTodos: Todo[]) => {
     )
   );
 };
+ 
