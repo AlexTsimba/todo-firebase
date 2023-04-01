@@ -5,9 +5,8 @@ import { Todo } from './Types/Todo';
 import { fetchTodos } from './utils/Utils';
 
 const style = {
-  bg: `min-h-screen w-screen overflow-hidden p-4 bg-gradient-to-r from-blue-300 to-blue-400`,
-  container: `bg-slate-100 rounded-lg p-6 shadow-xl max-w-[1024px] m-auto`,
-  heading: `text-3xl font-bold text-center text-gray-700 mb-2`,
+  bg: `min-h-screen w-screen overflow-hidden p-4 pt-20 bg-gradient-to-b from-slate-400 to-gray-500`,
+  container: `rounded-lg p-6 shadow-xl max-w-[1024px] m-auto`,
   counter: `text-center`,
 };
 
@@ -24,8 +23,6 @@ export default function App() {
   return (
     <div className={style.bg}>
       <div className={style.container}>
-        <h3 className={style.heading}>Todo App</h3>
-
         <AddTodo todosLength={todos.length} setIsAdding={setIsAdding} />
 
         <TodoList todos={todos} setTodos={setTodos} />

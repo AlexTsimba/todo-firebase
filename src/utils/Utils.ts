@@ -14,7 +14,7 @@ import { Todo } from '../Types/Todo';
 
 export const fetchTodos = async (setTodos: (todos: Todo[]) => void) => {
   const querySnapshot = await getDocs(
-    query(collection(db, 'todos'), orderBy('order', 'asc'))
+    query(collection(db, 'todos'), orderBy('order', 'desc'))
   );
 
   const todosData = querySnapshot.docs.map((todo, index) => ({
@@ -43,7 +43,7 @@ export const addTodo = async (todo: Omit<Todo, 'id'>) => {
 export const deleteTodo = async (todo: Todo) => {
   const todoRef = doc(db, 'todos', todo.id);
   await deleteDoc(todoRef);
-  
+
   const todosRef = collection(db, 'todos');
   const todosSnapshot = await getDocs(todosRef);
 
@@ -53,7 +53,6 @@ export const deleteTodo = async (todo: Todo) => {
   });
   await batch.commit();
 };
-
 
 export const updateTodosOrder = async (updatedTodos: Todo[]) => {
   const todosRef = collection(db, 'todos');
@@ -66,4 +65,3 @@ export const updateTodosOrder = async (updatedTodos: Todo[]) => {
     )
   );
 };
- 
