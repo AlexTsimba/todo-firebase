@@ -8,7 +8,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        charcoal: '#242424',
+        light: '#242424',
         skyblue: '#61DBFB',
       },
     },

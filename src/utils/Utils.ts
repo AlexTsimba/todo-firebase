@@ -1,69 +1,28 @@
-import {
-  getDocs,
-  collection,
-  updateDoc,
-  deleteDoc,
-  addDoc,
-  doc,
-  query,
-  orderBy,
-  writeBatch,
-} from 'firebase/firestore';
-import db from '../../firebase';
-import { Todo } from '../Types/Todo';
-
-export const fetchTodos = async (setTodos: (todos: Todo[]) => void) => {
-  const querySnapshot = await getDocs(
-    query(collection(db, 'todos'), orderBy('order', 'asc'))
-  );
-
-  const todosData = querySnapshot.docs.map((todo, index) => ({
-    id: todo.id,
-    order: index,
-    ...todo.data(),
-  })) as unknown as Todo[];
-
-  setTodos(todosData);
-};
-
-export const toggleComplete = async (todo: Todo) => {
-  await updateDoc(doc(db, 'todos', todo.id), {
-    completed: !todo.completed,
-  });
-};
-
-export const addTodo = async (todo: Omit<Todo, 'id'>) => {
-  await addDoc(collection(db, 'todos'), {
-    name: todo.name,
-    completed: todo.completed,
-    order: todo.order,
-  });
-};
-
-export const deleteTodo = async (todo: Todo) => {
-  const todoRef = doc(db, 'todos', todo.id);
-  await deleteDoc(todoRef);
+export const getGreeting = (date = new Date()) => {
+    const hour = date.getHours();
+    let greeting;
   
-  const todosRef = collection(db, 'todos');
-  const todosSnapshot = await getDocs(todosRef);
+    if (hour >= 5 && hour < 12) {
+      greeting = 'Good morning';
+    } else if (hour >= 12 && hour < 18) {
+      greeting = 'Good afternoon';
+    } else {
+      greeting = 'Good evening';
+    }
+  
+    return  greeting;
+  };
 
-  const batch = writeBatch(db);
-  todosSnapshot.docs.forEach((dc, index) => {
-    batch.update(dc.ref, { order: index });
-  });
-  await batch.commit();
-};
+  export const getTodayDate = (date = new Date()) => {
+    const formatter = new Intl.DateTimeFormat('en-US', {
+        weekday: 'long',
+        month: 'short',
+        day: 'numeric'
+      });
 
+      return formatter.format(date);
+  };
+  
 
-export const updateTodosOrder = async (updatedTodos: Todo[]) => {
-  const todosRef = collection(db, 'todos');
-
-  await Promise.all(
-    updatedTodos.map((updatedTodo) =>
-      updateDoc(doc(todosRef, updatedTodo.id), {
-        order: updatedTodo.order,
-      })
-    )
-  );
-};
- 
+//   export const formatter = new Intl.RelativeTimeFormat("en", {numeric: "auto"});
+//   formatter.format(1, 'days');

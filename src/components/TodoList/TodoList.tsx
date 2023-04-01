@@ -2,7 +2,7 @@ import React from 'react';
 import { Reorder } from 'framer-motion';
 import { Todo } from '../../Types/Todo';
 import TodoItem from '../TodoItem/TodoItem';
-import { deleteTodo, updateTodosOrder } from '../../utils/Utils';
+import { deleteTodo, updateTodosOrder } from '../../utils/Api';
 
 interface Props {
   todos: Todo[];
