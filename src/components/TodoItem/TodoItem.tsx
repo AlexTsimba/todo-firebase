@@ -8,8 +8,8 @@ import {
 import { TbTrashX } from 'react-icons/tb';
 import classNames from 'classnames';
 import { Todo } from '../../Types/Todo';
-import { toggleComplete } from '../../utils/Utils';
-import useRaisedShadow from '../../utils/use-raized-shadow';
+import { toggleComplete } from '../../utils/Api';
+import useRaisedShadow from '../../utils/Shadows';
 
 const style = {
   item: `transition duration-300 ease-in-out my-4 flex justify-between rounded-lg bg-white p-4 shadow-lg font-sans text-xl font-md hover:bg-slate-50`,
