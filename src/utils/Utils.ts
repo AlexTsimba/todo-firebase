@@ -1,28 +1,27 @@
 export const getGreeting = (date = new Date()) => {
-    const hour = date.getHours();
-    let greeting;
-  
-    if (hour >= 5 && hour < 12) {
-      greeting = 'Good morning';
-    } else if (hour >= 12 && hour < 18) {
-      greeting = 'Good afternoon';
-    } else {
-      greeting = 'Good evening';
-    }
-  
-    return  greeting;
-  };
+  const hour = date.getHours();
+  let greeting;
 
-  export const getTodayDate = (date = new Date()) => {
-    const formatter = new Intl.DateTimeFormat('en-US', {
-        weekday: 'long',
-        month: 'short',
-        day: 'numeric'
-      });
+  if (hour >= 5 && hour < 12) {
+    greeting = 'Good morning';
+  } else if (hour >= 12 && hour < 18) {
+    greeting = 'Good afternoon';
+  } else {
+    greeting = 'Good evening';
+  }
 
-      return formatter.format(date);
-  };
-  
+  return greeting;
+};
+
+export const getTodayDate = (date = new Date()) => {
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    weekday: 'long',
+    month: 'short',
+    day: 'numeric',
+  });
+
+  return formatter.format(date);
+};
 
 //   export const formatter = new Intl.RelativeTimeFormat("en", {numeric: "auto"});
 //   formatter.format(1, 'days');

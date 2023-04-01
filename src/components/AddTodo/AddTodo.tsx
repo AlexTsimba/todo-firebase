@@ -10,7 +10,7 @@ interface Props {
 
 const style = {
   form: `flex justify-between gap-x-2 relative`,
-  input: `border border-[#242424] border-solid border-2 w-full pl-6 h-16 transition duration-500 ease-in-out rounded-lg text-xl pl-20 bg-transparent focus:bg-slate-300 placeholder-gray-900 focus:placeholder-gray-600`,
+  input: `border border-[#242424] border-solid border-2 w-full pl-6 h-16 transition duration-500 ease-in-out rounded-lg text-xl pl-20 bg-transparent focus:bg-slate-300 placeholder-gray-900 focus:border-none focus:outline-none focus:placeholder-gray-600`,
   button: `px-4 py-2 rounded-lg  bg-slate-200 hover:bg-slate-300 absolute right-4 top-1/2 transform -translate-y-1/2 transition duration-300 ease-in-out z-10 pointer-events-all`,
 };
 
