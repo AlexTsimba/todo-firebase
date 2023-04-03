@@ -6,8 +6,9 @@ import { fetchTodos } from './utils/Api';
 import Header from './components/Header/Header';
 
 const style = {
-  bg: `min-h-screen w-screen overflow-hidden p-4 pt-20 bg-gradient-to-b from-slate-400 to-gray-500`,
-  container: `max-w-[800px] m-auto`,
+  bg: ` bg-local min-h-screen w-screen overflow-hidden p-4 pt-20 bg-fixed bg-cover bg-[#9da1af]`,
+
+  container: `max-w-[1024px] m-auto`,
   counter: `text-center`,
 };
 
@@ -18,7 +19,6 @@ export default function App() {
 
   useEffect(() => {
     fetchTodos(setTodos);
-
     setIsAdding(false);
   }, [isAdding]);
 
