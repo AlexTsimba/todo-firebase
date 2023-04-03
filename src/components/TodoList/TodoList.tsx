@@ -27,10 +27,10 @@ const TodoList: React.FC<Props> = ({ todos, setTodos }) => {
   };
 
   return (
-    <Reorder.Group values={todos} onReorder={handleReorder}>
+    <Reorder.Group axis="y" values={todos} onReorder={handleReorder}>
       {todos.map((todo) => {
         return (
-          <TodoItem todo={todo} key={todo.id} onDelete={handleDeleteTodo} />
+          <TodoItem key={todo.id} todo={todo} onDelete={handleDeleteTodo} />
         );
       })}
     </Reorder.Group>

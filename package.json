@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@firebase/firestore": "^3.9.0",
+    "@heroicons/react": "^2.0.17",
     "classnames": "^2.3.2",
     "dotenv": "^16.0.3",
     "firebase": "^9.18.0",
