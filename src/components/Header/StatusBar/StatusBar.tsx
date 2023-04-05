@@ -1,10 +1,10 @@
 import { AnimatePresence, motion } from 'framer-motion';
+import { useSelector } from 'react-redux';
+import { selectPendingTodos } from '../../../features/todos/todosSelectors';
 
-interface Props {
-  pendingTodos: number;
-}
+const StatusBar: React.FC = () => {
+  const pendingTodos = useSelector(selectPendingTodos).length;
 
-const StatusBar: React.FC<Props> = ({ pendingTodos }) => {
   return (
     <AnimatePresence>
       {pendingTodos > 0 && (

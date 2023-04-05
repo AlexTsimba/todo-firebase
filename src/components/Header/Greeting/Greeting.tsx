@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import React from 'react';
 import { getGreeting, getTodayDate } from '../../../utils/Utils';
 
 const Greeting = () => {
@@ -14,10 +13,7 @@ const Greeting = () => {
       className="text-3xl font-normal text-light"
     >
       {greeting}, Username
-      <p className="text-4xl font-light text-gray-600">
-        {' '}
-        It&#39;s {todayDate}{' '}
-      </p>
+      <p className="text-4xl font-light text-gray-600">It&#39;s {todayDate}</p>
     </motion.h1>
   );
 };
