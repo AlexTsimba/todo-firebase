@@ -1,12 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { motion, useAnimation } from 'framer-motion';
-import { addTodo } from '../../utils/Api';
-
-interface Props {
-  todosLength: number;
-  setIsAdding: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { useDispatch } from 'react-redux';
+import { addTodo } from '../../features/todos/todosSlice';
+import { Todo } from '../../Types/Todo';
 
 const style = {
   form: `mb-20 flex justify-between gap-x-2 relative`,
@@ -14,9 +11,10 @@ const style = {
   button: `px-4 py-2 rounded-lg  bg-slate-200 hover:bg-slate-300 absolute right-4 top-1/2 transform -translate-y-1/2 transition duration-300 ease-in-out z-10 pointer-events-all`,
 };
 
-const AddTodo: React.FC<Props> = ({ todosLength, setIsAdding }) => {
+const AddTodo: React.FC = () => {
   const [input, setInput] = useState<string>('');
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const dispatch = useDispatch();
 
   const animation = useAnimation();
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -33,21 +31,14 @@ const AddTodo: React.FC<Props> = ({ todosLength, setIsAdding }) => {
     event.preventDefault();
 
     if (input.length > 0) {
-      const newTodo = {
-        name: input,
-        completed: false,
-        order: todosLength,
-      };
-
-      addTodo(newTodo);
-
-      setIsAdding(true);
+      const newTodo: Pick<Todo, 'name'> = { name: input };
+      dispatch(addTodo(newTodo));
       setIsSubmitted(true);
 
       await animation.start({ y: 142 });
       await animation.start({ opacity: 0 });
       await animation.start({ y: 0 });
-      animation.start({ opacity: 1 });
+      await animation.start({ opacity: 1 });
 
       setInput('');
     }

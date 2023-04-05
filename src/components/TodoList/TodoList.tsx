@@ -1,19 +1,14 @@
 import React from 'react';
 import { Reorder } from 'framer-motion';
+import { useSelector, useDispatch } from 'react-redux';
 import { Todo } from '../../Types/Todo';
 import TodoItem from '../TodoItem/TodoItem';
-import { deleteTodo, updateTodosOrder } from '../../utils/Api';
+import { selectAllTodos } from '../../features/todos/todosSelectors';
+import { reorderTodos } from '../../features/todos/todosSlice';
 
-interface Props {
-  todos: Todo[];
-  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
-}
-
-const TodoList: React.FC<Props> = ({ todos, setTodos }) => {
-  const handleDeleteTodo = async (todo: Todo) => {
-    deleteTodo(todo);
-    setTodos((prevTodos) => prevTodos.filter((t) => t.id !== todo.id));
-  };
+const TodoList: React.FC = () => {
+  const todos = useSelector(selectAllTodos);
+  const dispatch = useDispatch();
 
   const handleReorder = (reorderedTodos: Todo[]) => {
     const updatedTodos = reorderedTodos.map((todo, index) => {
@@ -22,16 +17,13 @@ const TodoList: React.FC<Props> = ({ todos, setTodos }) => {
         order: index,
       };
     });
-    setTodos(updatedTodos);
-    updateTodosOrder(updatedTodos);
+    dispatch(reorderTodos(updatedTodos));
   };
 
   return (
     <Reorder.Group axis="y" values={todos} onReorder={handleReorder}>
       {todos.map((todo) => {
-        return (
-          <TodoItem key={todo.id} todo={todo} onDelete={handleDeleteTodo} />
-        );
+        return <TodoItem key={todo.id} todo={todo} />;
       })}
     </Reorder.Group>
   );

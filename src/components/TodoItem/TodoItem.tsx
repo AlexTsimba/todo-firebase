@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion, Reorder, useMotionValue } from 'framer-motion';
 import { ArchiveBoxXMarkIcon } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
+import { useDispatch } from 'react-redux';
 import { Todo } from '../../Types/Todo';
-import { toggleComplete } from '../../utils/Api';
 import useRaisedShadow from '../../utils/Shadows';
+import { deleteTodo, toggleComplete } from '../../features/todos/todosSlice';
 
 const style = {
   item: ` group relative transition duration-300 ease-in-out my-2 flex justify-between p-4 font-sans text-xl font-md`,
@@ -14,19 +15,22 @@ const style = {
   button: `invisible group-hover:visible transition-delay-300 hover:scale-125 transform transition duration-300 ease-in-out hover:bg-yellow-400 p-2 rounded-full`,
 };
 
-interface Props {
+interface TodoItemProps {
   todo: Todo;
-  onDelete: (todo: Todo) => Promise<void>;
 }
 
-const TodoItem: React.FC<Props> = ({ todo, onDelete }) => {
-  const [completed, setCompleted] = useState<boolean>(todo.completed);
+const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
+  const dispatch = useDispatch();
+
   const y = useMotionValue(0);
   const boxShadow = useRaisedShadow(y);
 
-  const handleToggleComplete = async () => {
-    await toggleComplete(todo);
-    setCompleted(!completed);
+  const handleDeleteTodo = async (idToDelete: Pick<Todo, 'id'>) => {
+    dispatch(deleteTodo({ idToDelete }));
+  };
+
+  const handleToggleComplete = (idToTogle: Pick<Todo, 'id'>) => {
+    dispatch(toggleComplete(idToTogle));
   };
 
   return (
@@ -46,20 +50,20 @@ const TodoItem: React.FC<Props> = ({ todo, onDelete }) => {
       >
         <label
           className={classNames(style.todo, {
-            [style.completed]: completed,
+            [style.completed]: todo.completed,
           })}
         >
           <input
             type="checkbox"
-            onChange={handleToggleComplete}
-            checked={completed}
+            onChange={() => handleToggleComplete(todo)}
+            checked={todo.completed}
             className={style.checkbox}
           />
           {todo.name}
         </label>
         <button
           className={classNames(style.button)}
-          onClick={() => onDelete(todo)}
+          onClick={() => handleDeleteTodo(todo)}
         >
           <ArchiveBoxXMarkIcon className="h-6" />
         </button>
