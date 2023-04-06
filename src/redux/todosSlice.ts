@@ -1,6 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Todo } from '../Types/Todo';
-import { addTodoReducer, deleteTodoReducer, toggleCompleteReducer, reorderTodosReducer } from './todosReducers';
+import {
+  addTodoReducer,
+  deleteTodoReducer,
+  toggleCompleteReducer,
+  reorderTodosReducer,
+} from './todosReducers';
 
 export interface TodosState {
   todos: Todo[];
@@ -21,11 +26,7 @@ export const todosSlice = createSlice({
   },
 });
 
-export const {
-  addTodo,
-  deleteTodo,
-  reorderTodos,
-  toggleComplete,
-} = todosSlice.actions;
+export const { addTodo, deleteTodo, reorderTodos, toggleComplete } =
+  todosSlice.actions;
 
 export default todosSlice.reducer;
