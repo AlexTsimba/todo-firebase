@@ -1,4 +1,4 @@
-import { RootState } from '../../redux/store';
+import { RootState } from './store';
 
 export const selectAllTodos = (state: RootState) => state.todos.todos;
 export const selectPendingTodos = (state: RootState) =>

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { motion, useAnimation } from 'framer-motion';
 import { useDispatch } from 'react-redux';
-import { addTodo } from '../../features/todos/todosSlice';
+import { addTodo } from '../../redux/todosSlice';
 import { Todo } from '../../Types/Todo';
 
 const style = {

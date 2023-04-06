@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
 import { Todo } from '../../Types/Todo';
 import useRaisedShadow from '../../utils/Shadows';
-import { deleteTodo, toggleComplete } from '../../features/todos/todosSlice';
+import { deleteTodo, toggleComplete } from '../../redux/todosSlice';
 
 const style = {
   item: ` group relative transition duration-300 ease-in-out my-2 flex justify-between p-4 font-sans text-xl font-md`,
@@ -25,8 +25,8 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
   const y = useMotionValue(0);
   const boxShadow = useRaisedShadow(y);
 
-  const handleDeleteTodo = async (idToDelete: Pick<Todo, 'id'>) => {
-    dispatch(deleteTodo({ idToDelete }));
+  const handleDeleteTodo = async (idToDelete: string) => {
+    dispatch(deleteTodo({ id: idToDelete }));
   };
 
   const handleToggleComplete = (idToTogle: Pick<Todo, 'id'>) => {
@@ -63,7 +63,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
         </label>
         <button
           className={classNames(style.button)}
-          onClick={() => handleDeleteTodo(todo)}
+          onClick={() => handleDeleteTodo(todo.id)}
         >
           <ArchiveBoxXMarkIcon className="h-6" />
         </button>
