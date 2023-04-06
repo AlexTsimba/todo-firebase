@@ -7,8 +7,8 @@ import { Todo } from '../../Types/Todo';
 
 const style = {
   form: `mb-20 flex justify-between gap-x-2 relative`,
-  input: `shadow-xl w-full h-16 transition duration-500 ease-in-out rounded-3xl text-xl pl-20 pr-20 dsabg-zinc-200 focus:bg-[#dae0f5] placeholder-slate-300 border-none focus:outline-none focus:placeholder-gray-600`,
-  button: `px-4 py-2 rounded-lg  bg-slate-200 hover:bg-slate-300 absolute right-4 top-1/2 transform -translate-y-1/2 transition duration-300 ease-in-out z-10 pointer-events-all`,
+  input: `shadow-xl w-full h-16 transition duration-500 ease-in-out rounded-3xl text-xl pl-20 pr-20 bg-slate-300 focus:bg-[#F2F5F9] placeholder-slate-700 border-none focus:outline-none focus:placeholder-gray-600`,
+  button: `px-4 py-2 rounded-lg  bg-slate-200 hover:bg-slate-300 absolute right-4 top-1/2 transform -translate-y-1/2 transition duration-300 ease-in-out z-10`,
 };
 
 const AddTodo: React.FC = () => {

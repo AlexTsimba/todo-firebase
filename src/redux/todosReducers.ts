@@ -13,7 +13,7 @@ export const addTodoReducer = (
     completed: false,
     id: nanoid(),
   };
-  state.todos.push(newTodo);
+  state.todos.unshift(newTodo);
 };
 
 export const deleteTodoReducer = (

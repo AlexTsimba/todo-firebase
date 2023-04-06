@@ -8,6 +8,7 @@ import { reorderTodos } from '../../redux/todosSlice';
 
 const TodoList: React.FC = () => {
   const todos = useSelector(selectAllTodos);
+
   const dispatch = useDispatch();
 
   const handleReorder = (reorderedTodos: Todo[]) => {
@@ -22,8 +23,15 @@ const TodoList: React.FC = () => {
 
   return (
     <Reorder.Group axis="y" values={todos} onReorder={handleReorder}>
-      {todos.map((todo) => {
-        return <TodoItem key={todo.id} todo={todo} />;
+      {todos.map((todo, index) => {
+        return (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            index={index}
+            todosLength={todos.length}
+          />
+        );
       })}
     </Reorder.Group>
   );
