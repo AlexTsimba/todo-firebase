@@ -8,6 +8,9 @@ module.exports = {
     },
     extend: {
       colors: {
+        'primary-light':'#232323',
+        'primary-button': '#DFDFDF',
+        'button-text': '#242424',
         light: '#242424',
         skyblue: '#61DBFB',
       },

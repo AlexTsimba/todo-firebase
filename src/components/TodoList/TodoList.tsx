@@ -3,8 +3,8 @@ import { Reorder } from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux';
 import { Todo } from '../../Types/Todo';
 import TodoItem from '../TodoItem/TodoItem';
-import { selectAllTodos } from '../../redux/todosSelectors';
-import { reorderTodos } from '../../redux/todosSlice';
+import { selectAllTodos } from '../../Store/todosSelectors';
+import { reorderTodos } from '../../Store/todosSlice';
 
 const TodoList: React.FC = () => {
   const todos = useSelector(selectAllTodos);
