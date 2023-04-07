@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { PlusIcon } from '@heroicons/react/24/outline';
 import { motion, useAnimation } from 'framer-motion';
 import { useDispatch } from 'react-redux';
-import { addTodo } from '../../redux/todosSlice';
+import { addTodo } from '../../Store/todosSlice';
 import { Todo } from '../../Types/Todo';
+import ButtonAdd from '../Buttons/ButtonAdd';
 
 const style = {
   form: `mb-20 flex justify-between gap-x-2 relative`,
@@ -34,13 +34,11 @@ const AddTodo: React.FC = () => {
       const newTodo: Pick<Todo, 'name'> = { name: input };
       dispatch(addTodo(newTodo));
       setIsSubmitted(true);
-
       await animation.start({ y: 142 });
       await animation.start({ opacity: 0 });
       await animation.start({ y: 0 });
-      await animation.start({ opacity: 1 });
-
       setInput('');
+      await animation.start({ opacity: 1 });
     }
   };
 
@@ -61,11 +59,7 @@ const AddTodo: React.FC = () => {
         onChange={handlInputChange}
         ref={inputRef}
       />
-      {input && !isSubmitted && (
-        <button className={style.button} type="submit">
-          <PlusIcon className="h-6" />
-        </button>
-      )}
+      {input && !isSubmitted && <ButtonAdd />}
     </motion.form>
   );
 };
