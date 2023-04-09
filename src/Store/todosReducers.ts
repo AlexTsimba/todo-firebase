@@ -12,6 +12,7 @@ export const addTodoReducer = (
     order: state.todos.length,
     completed: false,
     id: nanoid(),
+    dueDate: new Date().toDateString(),
   };
   state.todos.unshift(newTodo);
 };
@@ -45,4 +46,21 @@ export const reorderTodosReducer = (
   action: PayloadAction<Todo[]>
 ) => {
   state.todos = action.payload;
+};
+
+export const changeDueDateReducer = (
+  state: {todos: Todo[] },
+  action: PayloadAction<Pick<Todo, 'id' | 'dueDate'>>
+) => {
+  state.todos = state.todos.map((todo) => {
+    if (todo.id === action.payload.id) {
+      return {
+        ...todo,
+        dueDate: action.payload.dueDate,
+      };
+    }
+    return {
+      ...todo,
+    };
+  });
 };

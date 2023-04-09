@@ -9,11 +9,11 @@ const StatusBar: React.FC = () => {
     <AnimatePresence>
       {pendingTodos > 0 && (
         <motion.p
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1, duration: 0.5 }}
-          exit={{ opacity: 0, x: -20 }}
           className="text-3xl"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3, duration: 0.3 }}
+          exit={{ opacity: 0, x: -20 }}
         >
           {pendingTodos} pending {pendingTodos > 1 ? 'todos' : 'todo'}
         </motion.p>

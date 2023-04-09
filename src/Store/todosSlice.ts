@@ -5,6 +5,7 @@ import {
   deleteTodoReducer,
   toggleCompleteReducer,
   reorderTodosReducer,
+  changeDueDateReducer,
 } from './todosReducers';
 
 export interface TodosState {
@@ -23,10 +24,11 @@ export const todosSlice = createSlice({
     deleteTodo: deleteTodoReducer,
     toggleComplete: toggleCompleteReducer,
     reorderTodos: reorderTodosReducer,
+    changeDuedate: changeDueDateReducer,
   },
 });
 
-export const { addTodo, deleteTodo, reorderTodos, toggleComplete } =
+export const { addTodo, deleteTodo, reorderTodos, toggleComplete, changeDuedate } =
   todosSlice.actions;
 
 export default todosSlice.reducer;
