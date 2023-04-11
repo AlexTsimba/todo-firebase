@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { getGreeting, getTodayDate } from '../../../utils/Utils';
+import { getGreeting, getTodayDate } from '../../utils/Utils';
 
 const Greeting = () => {
   const greeting = getGreeting();
@@ -10,7 +10,7 @@ const Greeting = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="text-3xl font-normal text-light"
+      className="text-light text-3xl font-normal"
     >
       {greeting}, Username
       <p className="text-4xl font-light text-gray-600">It&#39;s {todayDate}</p>

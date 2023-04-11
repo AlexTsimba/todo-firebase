@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
-import { selectPendingTodos } from '../../../Store/todosSelectors';
+import { selectPendingTodos } from '../../Store/todosSelectors';
 
 const StatusBar: React.FC = () => {
   const pendingTodos = useSelector(selectPendingTodos).length;

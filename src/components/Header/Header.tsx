@@ -1,6 +1,6 @@
 import React from 'react';
-import Greeting from './Greeting/Greeting';
-import StatusBar from './StatusBar/StatusBar';
+import Greeting from '../Atoms/Greeting';
+import StatusBar from '../Atoms/StatusBar';
 
 const Header: React.FC = () => {
   return (

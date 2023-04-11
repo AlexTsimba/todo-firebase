@@ -44,10 +44,15 @@ export const getRelativeDate = (dateFromState: string) => {
   const diffTime = date.getTime() - today.getTime();
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-  const formatter = new Intl.RelativeTimeFormat("en", {numeric: "auto"});
+  if (Number.isNaN(diffDays) || !Number.isFinite(diffDays)) {
+    return 'Invalid Date';
+  }
 
-    return formatter.format(diffDays, "day");
+  const formatter = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+
+  return formatter.format(diffDays, 'day');
 };
+
 
 //   export const formatter = new Intl.RelativeTimeFormat("en", {numeric: "auto"});
 //   formatter.format(1, 'days');

@@ -3,7 +3,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../../Store/todosSlice';
 import { Todo } from '../../Types/Todo';
-import ButtonAdd from '../Buttons/ButtonAdd';
+import ButtonAdd from '../Atoms/Buttons/ButtonAdd';
 
 const style = {
   form: `mb-20 flex justify-between gap-x-2 relative`,

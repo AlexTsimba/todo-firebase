@@ -49,7 +49,7 @@ export const reorderTodosReducer = (
 };
 
 export const changeDueDateReducer = (
-  state: {todos: Todo[] },
+  state: { todos: Todo[] },
   action: PayloadAction<Pick<Todo, 'id' | 'dueDate'>>
 ) => {
   state.todos = state.todos.map((todo) => {

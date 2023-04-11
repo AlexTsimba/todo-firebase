@@ -28,7 +28,12 @@ export const todosSlice = createSlice({
   },
 });
 
-export const { addTodo, deleteTodo, reorderTodos, toggleComplete, changeDuedate } =
-  todosSlice.actions;
+export const {
+  addTodo,
+  deleteTodo,
+  reorderTodos,
+  toggleComplete,
+  changeDuedate,
+} = todosSlice.actions;
 
 export default todosSlice.reducer;

@@ -5,11 +5,19 @@ import { DragControls } from 'framer-motion';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import style from './style';
 
-interface ButtonDragProps {
+interface ButtonReorderProps {
   controls: DragControls;
+  todosLength: number;
 }
 
-const ButtonDrag: React.FC<ButtonDragProps> = ({ controls }) => {
+const ButtonReorder: React.FC<ButtonReorderProps> = ({
+  controls,
+  todosLength,
+}) => {
+  if (todosLength < 2) {
+    return <p />;
+  }
+
   return (
     <button
       className={classNames(style.button, style.draggable)}
@@ -20,4 +28,4 @@ const ButtonDrag: React.FC<ButtonDragProps> = ({ controls }) => {
   );
 };
 
-export default ButtonDrag;
+export default ButtonReorder;

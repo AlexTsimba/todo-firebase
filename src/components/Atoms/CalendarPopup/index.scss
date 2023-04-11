@@ -1,0 +1,64 @@
+$calendar-secondary: theme('colors.color-calendar-secondary');
+$regular-text: theme('colors.color-regular-text');
+
+.react-calendar {
+  @apply w-80 rounded-lg bg-color-calendar-primary p-2 shadow-lg;
+  font-family: inherit;
+
+  &__month-view {
+    &__days {
+      display: grid !important; /* Overwriting styles of the react-calendar library */
+      grid-template-columns: repeat(7, calc((100% - 21px) / 7));
+      grid-gap: 4px;
+    }
+    &__weekdays {
+      @apply hidden;
+
+      &__weekday {
+        @apply p-0;
+      }
+    }
+  }
+
+  &__navigation {
+
+    &__prev2-button,
+    &__next2-button {
+      @apply hidden;
+    }
+
+    &__next-button,
+    &__arrow {
+      @apply rounded-lg;
+    }
+
+    &__label {
+      @apply rounded-lg;
+    }
+  }
+
+  &__tile {
+    &:disabled {
+      @apply bg-color-calendar-primary text-color-calendar-secondary;
+    }
+
+    &:hover {
+      @apply rounded-lg;
+    }
+
+    &--active {
+      @apply rounded-lg bg-color-calendar-secondary text-color-regular-text;
+      background-color: $calendar-secondary !important; /* Overwriting styles of the react-calendar library */
+    }
+
+    &--now {
+      @apply rounded-lg text-color-regular-text;
+      border: 1px solid $regular-text !important; /* Overwriting styles of the react-calendar library */
+
+      &:hover {
+        @apply border-color-regular-text;
+        background-color: $calendar-secondary !important; /* Overwriting styles of the react-calendar library */
+      }
+    }
+  }
+}
