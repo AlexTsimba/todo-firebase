@@ -2,9 +2,9 @@ import React from 'react';
 import Calendar from 'react-calendar';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { getDateShortest } from '../../../utils/Utils';
+import { getDateMonth } from '../../../utils/DateTimeFormat';
 import 'react-calendar/dist/Calendar.css';
-import './index.scss';
+import './style.scss';
 
 interface CalendarPopupProps {
   dueDate: string;
@@ -29,7 +29,7 @@ const CalendarPopup: React.FC<CalendarPopupProps> = ({
           transition={{ ease: 'easeInOut', duration: 0.3 }}
         >
           <Calendar
-            navigationLabel={({ date }) => getDateShortest(date)}
+            navigationLabel={({ date }) => getDateMonth(date)}
             formatShortWeekday={() => ''}
             value={dueDate}
             onChange={handleChange}

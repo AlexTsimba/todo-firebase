@@ -1,62 +1,66 @@
 $calendar-secondary: theme('colors.color-calendar-secondary');
-$regular-text: theme('colors.color-regular-text');
+$calendar-primary: theme('colors.color-calendar-primary');
+$regular-text: theme('colors.color-text-primary');
 
 .react-calendar {
-  @apply w-80 rounded-lg bg-color-calendar-primary p-2 shadow-lg;
+  width: 20rem;
+  border-radius: 0.5rem;
+  background-color: $calendar-primary;
+  padding: 0.5rem;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   font-family: inherit;
 
   &__month-view {
     &__days {
       display: grid !important; /* Overwriting styles of the react-calendar library */
-      grid-template-columns: repeat(7, calc((100% - 21px) / 7));
-      grid-gap: 4px;
+      grid-template-columns: repeat(7, calc((100% - 2.625rem) / 7));
+      grid-gap: 0.25rem;
     }
     &__weekdays {
-      @apply hidden;
+      display: none;
 
       &__weekday {
-        @apply p-0;
+        padding: 0;
       }
     }
   }
 
   &__navigation {
-
     &__prev2-button,
     &__next2-button {
-      @apply hidden;
+      display: none;
     }
 
     &__next-button,
-    &__arrow {
-      @apply rounded-lg;
-    }
-
+    &__arrow,
     &__label {
-      @apply rounded-lg;
+      border-radius: 0.5rem;
     }
   }
 
   &__tile {
-    &:disabled {
-      @apply bg-color-calendar-primary text-color-calendar-secondary;
+    &[disabled] {
+      background-color: $calendar-primary;
+      color: $calendar-secondary;
     }
 
     &:hover {
-      @apply rounded-lg;
+      border-radius: 0.5rem;
     }
 
     &--active {
-      @apply rounded-lg bg-color-calendar-secondary text-color-regular-text;
       background-color: $calendar-secondary !important; /* Overwriting styles of the react-calendar library */
+      border-radius: 0.5rem;
+      color: $regular-text;
     }
 
     &--now {
-      @apply rounded-lg text-color-regular-text;
       border: 1px solid $regular-text !important; /* Overwriting styles of the react-calendar library */
+      background-color: $calendar-secondary;
+      color: $regular-text;
 
       &:hover {
-        @apply border-color-regular-text;
+        border-color: $regular-text;
         background-color: $calendar-secondary !important; /* Overwriting styles of the react-calendar library */
       }
     }

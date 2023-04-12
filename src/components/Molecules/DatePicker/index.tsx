@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { Todo } from '../../Types/Todo';
-import { changeDuedate } from '../../Store/todosSlice';
-import useOnClickOutside from '../../utils/useOnClickOutside';
-import ButtonDate from '../Atoms/Buttons/ButtonDate';
-import CalendarPopup from '../Atoms/CalendarPopup/CalendarPopup';
+import { Todo } from '../../../Types/Todo';
+import { changeDuedate } from '../../../Store/todosSlice';
+import useOnClickOutside from '../../../utils/Hooks/useOnClickOutside';
+import ButtonDate from '../../Atoms/Buttons/ButtonDate';
+import CalendarPopup from '../../Atoms/CalendarPopup';
 
 interface DatePickerProps {
   todo: Todo;

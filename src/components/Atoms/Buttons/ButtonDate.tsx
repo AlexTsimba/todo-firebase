@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './style';
-import { getRelativeDate } from '../../../utils/Utils';
+import { getRelativeDate } from '../../../utils/DateTimeFormat';
 
 interface ButtonDateProps {
   onClick: React.Dispatch<React.SetStateAction<boolean>>;

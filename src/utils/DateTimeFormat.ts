@@ -1,19 +1,19 @@
-export const getGreeting = (date = new Date()) => {
+export const getGreetingTime = (date = new Date()) => {
   const hour = date.getHours();
   let greeting;
 
   if (hour >= 5 && hour < 12) {
-    greeting = 'Good morning';
+    greeting = 'morning';
   } else if (hour >= 12 && hour < 18) {
-    greeting = 'Good afternoon';
+    greeting = 'afternoon';
   } else {
-    greeting = 'Good evening';
+    greeting = 'evening';
   }
 
   return greeting;
 };
 
-export const getTodayDate = (date = new Date()) => {
+export const getDateFull = (date = new Date()) => {
   const formatter = new Intl.DateTimeFormat('en-US', {
     weekday: 'long',
     month: 'short',
@@ -22,7 +22,7 @@ export const getTodayDate = (date = new Date()) => {
 
   return formatter.format(date);
 };
-export const getDateShort = (date = new Date()) => {
+export const getDateMonthDay = (date = new Date()) => {
   const formatter = new Intl.DateTimeFormat('en-US', {
     month: 'short',
     day: 'numeric',
@@ -30,7 +30,7 @@ export const getDateShort = (date = new Date()) => {
 
   return formatter.format(date);
 };
-export const getDateShortest = (date = new Date()) => {
+export const getDateMonth = (date = new Date()) => {
   const formatter = new Intl.DateTimeFormat('en-US', {
     month: 'long',
   });
@@ -52,7 +52,3 @@ export const getRelativeDate = (dateFromState: string) => {
 
   return formatter.format(diffDays, 'day');
 };
-
-
-//   export const formatter = new Intl.RelativeTimeFormat("en", {numeric: "auto"});
-//   formatter.format(1, 'days');

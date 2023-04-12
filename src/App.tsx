@@ -1,12 +1,10 @@
-import AddTodo from './components/AddTodo/AddTodo';
-import Header from './components/Header/Header';
-import TodoList from './components/TodoList/TodoList';
+import AddTodoForm from './components/Organisms/AddTodoForm';
+import Header from './components/Organisms/Header';
+import TodoList from './components/Organisms/TodoList';
 
 const style = {
-  bg: ` bg-local min-h-screen w-screen overflow-hidden p-4 pt-20 bg-fixed bg-cover bg-[#9da1af]`,
-
+  bg: `bg-local min-h-screen w-screen overflow-hidden p-8 pt-10 bg-fixed bg-cover bg-color-background`,
   container: `max-w-[1024px] m-auto`,
-  counter: `text-center`,
 };
 
 export default function App() {
@@ -14,7 +12,7 @@ export default function App() {
     <div className={style.bg}>
       <div className={style.container}>
         <Header />
-        <AddTodo />
+        <AddTodoForm />
         <TodoList />
       </div>
     </div>
