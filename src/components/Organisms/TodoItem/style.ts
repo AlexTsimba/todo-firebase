@@ -12,10 +12,10 @@ const style = {
     'relative',
     'mb-2 p-2',
     'flex justify-between',
-    'font-sans text-xl',
+    'font-sans text-md',
     'transition duration-300 ease-in-out',
   ),
-  buttonGroup: classNames('flex', 'gap-4'),
+  buttonGroup: classNames('flex', 'gap-2', 'lg:gap-4'),
 };
 
 export default style;

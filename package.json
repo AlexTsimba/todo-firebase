@@ -1,5 +1,5 @@
 {
-  "name": "todo-firebase",
+  "name": "",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -21,6 +21,7 @@
     "@heroicons/react": "^2.0.17",
     "@reduxjs/toolkit": "^1.9.3",
     "classnames": "^2.3.2",
+    "daisyui": "^2.51.5",
     "dotenv": "^16.0.3",
     "firebase": "^9.18.0",
     "framer-motion": "^10.6.1",
