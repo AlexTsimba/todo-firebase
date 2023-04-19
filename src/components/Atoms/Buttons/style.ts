@@ -13,7 +13,7 @@ const style = {
     'px-4 py-2',
     'absolute right-4 top-1/2',
     'transform -translate-y-1/2',
-    'rounded-tr-2xl rounded-br-2xl',
+    'rounded-tr-2xl rounded-br-2xl'
   ),
   icon: classNames('h-4'),
   groupHover: classNames('invisible group-hover:visible'),

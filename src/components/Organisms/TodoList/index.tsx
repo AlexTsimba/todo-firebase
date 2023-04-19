@@ -3,11 +3,15 @@ import { Reorder } from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux';
 import { Todo } from '../../../Types/Todo';
 import TodoItem from '../TodoItem';
-import { selectAllTodos } from '../../../Store/todosSelectors';
 import { reorderTodos } from '../../../Store/todosSlice';
+import { RootState } from '../../../Store/store';
 
-const TodoList: React.FC = () => {
-  const todos = useSelector(selectAllTodos);
+interface TodoListProps {
+  selector: (state: RootState) => Todo[];
+}
+
+const TodoList: React.FC<TodoListProps> = ({ selector }) => {
+  const todos = useSelector(selector);
   const dispatch = useDispatch();
 
   const handleReorder = useCallback(

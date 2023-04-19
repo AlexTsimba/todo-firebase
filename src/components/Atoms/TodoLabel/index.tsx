@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Todo } from '../../../Types/Todo';
@@ -10,10 +10,14 @@ interface TodoLabelProps {
 }
 
 const TodoLabel: React.FC<TodoLabelProps> = ({ todo }) => {
+  const [isChecked, setIsChecked] = useState(todo.completed);
   const dispatch = useDispatch();
 
   const handleToggleComplete = (id: string) => {
-    dispatch(toggleComplete({ id }));
+    setIsChecked(true);
+    setTimeout(() => {
+      dispatch(toggleComplete({ id }));
+    }, 1200);
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -29,7 +33,7 @@ const TodoLabel: React.FC<TodoLabelProps> = ({ todo }) => {
         id={todo.order.toString()}
         type="checkbox"
         onChange={() => handleToggleComplete(todo.id)}
-        checked={todo.completed}
+        checked={isChecked}
       />
       <label htmlFor={todo.order.toString()}>{todo.name}</label>
     </div>

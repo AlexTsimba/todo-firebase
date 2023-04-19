@@ -9,7 +9,7 @@ const StatusBar: React.FC = () => {
     <AnimatePresence>
       {pendingTodos > 0 && (
         <motion.p
-          className="text-2xl font-light text-color-text-secondary"
+          className="text-xl font-light text-color-text-secondary"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3, duration: 0.3 }}

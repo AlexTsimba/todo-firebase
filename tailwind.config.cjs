@@ -20,9 +20,9 @@ module.exports = {
       },
       fontSize: {
         '4xl': ['clamp(24px, 3vw, 36px)', '36px'],
-        '2xl': [' clamp(18px, 2vw, 24px)', '24px'],
-        'xl': [' clamp(16px, 2vw, 20px)', '20px'],
-       
+        '2xl': ['clamp(18px, 2vw, 24px)', '24px'],
+        xl: ['clamp(16px, 2vw, 20px)', '20px'],
+        md: '12px',
       },
     },
   },
