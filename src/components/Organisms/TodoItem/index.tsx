@@ -11,7 +11,7 @@ import useRaisedShadow from '../../../utils/Hooks/useRaisedShadow';
 import { deleteTodo } from '../../../Store/todosSlice';
 import ButtonReorder from '../../Atoms/Buttons/ButtonReorder';
 import ButtonDelete from '../../Atoms/Buttons/ButtonDelete';
-import DatePicker from '../../Molecules/DatePicker';
+import DateChanger from '../../Molecules/DateChanger';
 import TodoLabel from '../../Atoms/TodoLabel';
 import style from './style';
 
@@ -54,7 +54,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, index, todosLength }) => {
         <TodoLabel todo={todo} />
 
         <div className={style.buttonGroup}>
-          <DatePicker todo={todo} />
+          <DateChanger todo={todo} />
           <ButtonReorder todosLength={todosLength} controls={controls} />
           <ButtonDelete
             isFirst={isFirstChild}

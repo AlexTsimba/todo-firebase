@@ -1,10 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import Inbox from '../components/Pages/Inbox.page';
-import Layout from '../components/Pages/layout.page';
-import CopmletedList from '../components/Pages/completed.page';
-import TodayList from '../components/Pages/today.page';
-import UpcomingList from '../components/Pages/upcoming.page';
+import Inbox from '../components/Templates/Inbox';
+import Layout from '../components/Layout/layout.page';
+import CompletedList from '../components/Templates/Completed';
+import TodayList from '../components/Templates/Today';
+import UpcomingList from '../components/Templates/Upcoming';
 
 const router = createBrowserRouter([
   {
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/completed',
-        element: <CopmletedList />,
+        element: <CompletedList />,
       },
       {
         path: '/today',

@@ -4,4 +4,5 @@ export interface Todo {
   completed: boolean;
   order: number;
   dueDate: string;
+  completionDate: string;
 }

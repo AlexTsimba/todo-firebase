@@ -35,7 +35,9 @@ const TodoLabel: React.FC<TodoLabelProps> = ({ todo }) => {
         onChange={() => handleToggleComplete(todo.id)}
         checked={isChecked}
       />
-      <label htmlFor={todo.order.toString()}>{todo.name}</label>
+      <label htmlFor={todo.order.toString()}>
+        <h2 className=".. truncate">{todo.name}</h2>
+      </label>
     </div>
   );
 };

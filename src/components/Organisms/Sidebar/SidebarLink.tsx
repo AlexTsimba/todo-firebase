@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { memo } from 'react';
 import { NavLink } from 'react-router-dom';
 
 interface SidebarLinkProps {
@@ -19,16 +19,16 @@ const SidebarLink: React.FC<SidebarLinkProps> = ({
     <NavLink
       className={(navData) =>
         classNames(
-          'flex items-center justify-between rounded-lg bg-slate-100 py-2 px-4 text-md',
+          '300ms flex items-center justify-between rounded-lg bg-slate-100 py-2 px-4 text-md transition ease-in',
           {
-            'bg-slate-200 shadow-md ': navData.isActive,
+            'bg-slate-100/50 shadow-md ': navData.isActive,
           }
         )
       }
       to={path}
     >
       <div className="flex items-center gap-2 lg:gap-4">
-        <Icon className="h-4 " />
+        <Icon className="h-4" />
         {description}
       </div>
       <div className=" rounded-md bg-color-input-background px-2 py-1 text-color-text-secondary">
@@ -38,4 +38,4 @@ const SidebarLink: React.FC<SidebarLinkProps> = ({
   );
 };
 
-export default SidebarLink;
+export default memo(SidebarLink);

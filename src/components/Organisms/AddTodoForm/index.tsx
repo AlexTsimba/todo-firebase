@@ -1,17 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useDispatch } from 'react-redux';
+import classNames from 'classnames';
 
 import { Todo } from '../../../Types/Todo';
+import { TODAY_DATE } from '../../../utils/Constatns';
 import { addTodo } from '../../../Store/todosSlice';
 import ButtonAdd from '../../Atoms/Buttons/ButtonAdd';
+import InputAddTodo from '../../Atoms/Inputs/InputAddTodo';
+import DatePicker from '../../Molecules/DatePicker';
 import style from './style';
 
 const AddTodoForm: React.FC = () => {
   const [input, setInput] = useState<string>('');
+  const [dueDate, setDueDate] = useState<string>(TODAY_DATE);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
   const animation = useAnimation();
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -19,21 +24,20 @@ const AddTodoForm: React.FC = () => {
     inputRef.current?.focus();
   }, [isSubmitted]);
 
-  const handlInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(event.target.value);
-  };
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (input.length > 0) {
-      const newTodo: Pick<Todo, 'name'> = { name: input };
+      const newTodo: Pick<Todo, 'name' | 'dueDate'> = { name: input, dueDate };
       dispatch(addTodo(newTodo));
       setIsSubmitted(true);
-      await animation.start({ y: 142 });
+
+      await animation.start({ y: 90 });
       await animation.start({ opacity: 0 });
       await animation.start({ y: 0 });
+
       setInput('');
+      setDueDate(TODAY_DATE);
       await animation.start({ opacity: 1 });
     }
   };
@@ -47,15 +51,19 @@ const AddTodoForm: React.FC = () => {
       transition={{ duration: 0.2 }}
       onAnimationComplete={() => setIsSubmitted(false)}
     >
-      <input
-        className={style.input}
-        type="text"
-        placeholder="Add Todo:"
-        value={input}
-        onChange={handlInputChange}
-        ref={inputRef}
-      />
-      {input && !isSubmitted && <ButtonAdd />}
+      <InputAddTodo input={input} setInput={setInput} inputRef={inputRef} />
+      {input && !isSubmitted && (
+        <div
+          className={classNames(
+            'flex items-center gap-4',
+            'absolute right-16 top-1/2',
+            '-translate-y-1/2 transform'
+          )}
+        >
+          <DatePicker dueDate={dueDate} setDueDate={setDueDate} />
+          <ButtonAdd />
+        </div>
+      )}
     </motion.form>
   );
 };

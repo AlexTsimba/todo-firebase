@@ -2,6 +2,7 @@ import classNames from 'classnames';
 
 const style = {
   container: classNames(
+    'w-full z-10',
     'group',
     'relative',
     'rounded-lg',
@@ -12,7 +13,7 @@ const style = {
     'relative',
     'mb-2 p-2',
     'flex justify-between',
-    'font-sans text-md',
+    'font-sans text-lg',
     'transition duration-300 ease-in-out'
   ),
   buttonGroup: classNames('flex', 'gap-2', 'lg:gap-4'),

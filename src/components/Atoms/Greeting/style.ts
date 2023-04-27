@@ -1,6 +1,0 @@
-const style = {
-  greeting:
-    'text-light text-2xl font-normal text-color-text-primary leading-normal',
-};
-
-export default style;

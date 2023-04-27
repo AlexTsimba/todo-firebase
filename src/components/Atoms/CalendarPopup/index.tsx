@@ -22,7 +22,6 @@ const CalendarPopup: React.FC<CalendarPopupProps> = ({
       {isOpen && (
         <motion.div
           key={dueDate}
-          className="absolute -top-48 right-24 z-10"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}

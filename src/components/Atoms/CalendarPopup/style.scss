@@ -13,7 +13,7 @@ $regular-text: theme('colors.color-text-primary');
   &__month-view {
     &__days {
       display: grid !important; /* Overwriting styles of the react-calendar library */
-      grid-template-columns: repeat(7, calc((100% - 2.625rem) / 7));
+      grid-template-columns: repeat(7, calc((100% - 1.5rem) / 7));
       grid-gap: 0.25rem;
     }
     &__weekdays {
@@ -31,11 +31,14 @@ $regular-text: theme('colors.color-text-primary');
       display: none;
     }
 
-    &__next-button,
-    &__arrow,
-    &__label {
-      border-radius: 0.5rem;
+    &__next-button {
+      border-top-right-radius: 0.375rem
     }
+
+    &__prev-button {
+      border-top-left-radius: 0.375rem
+    }
+
   }
 
   &__tile {
@@ -57,6 +60,7 @@ $regular-text: theme('colors.color-text-primary');
     &--now {
       border: 1px solid $regular-text !important; /* Overwriting styles of the react-calendar library */
       background-color: $calendar-secondary;
+      border-radius: 0.5rem;
       color: $regular-text;
 
       &:hover {

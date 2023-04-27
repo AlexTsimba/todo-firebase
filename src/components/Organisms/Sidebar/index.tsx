@@ -22,9 +22,9 @@ const Sidebar = () => {
   const upcomingCount = useSelector(selectUpcomingTodos).length;
 
   return (
-    <div className="drawer-side">
+    <aside className="drawer-side">
       <label htmlFor="my-drawer-2" className="drawer-overlay" />
-      <nav className="menu w-80 gap-2 bg-slate-50/30 p-4 text-base-content backdrop-blur-lg lg:ml-2 lg:h-[98vh] lg:place-self-center lg:rounded-lg">
+      <nav className="menu w-80 gap-2 bg-white/30 p-4 text-base-content backdrop-blur-lg lg:ml-2 lg:h-[98vh] lg:place-self-center lg:rounded-lg">
         <TodayDate />
         <div className="divider mx-4 mb-2 mt-0" />
 
@@ -53,7 +53,7 @@ const Sidebar = () => {
           icon={CheckCircleIcon}
         />
       </nav>
-    </div>
+    </aside>
   );
 };
 

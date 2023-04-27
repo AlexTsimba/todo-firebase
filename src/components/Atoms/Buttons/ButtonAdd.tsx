@@ -6,10 +6,7 @@ import style from './style';
 
 const ButtonAdd = () => {
   return (
-    <button
-      type="submit"
-      className={classNames(style.button, style.insideInput)}
-    >
+    <button type="submit" className={classNames(style.button)}>
       <PlusIcon className={style.icon} />
     </button>
   );

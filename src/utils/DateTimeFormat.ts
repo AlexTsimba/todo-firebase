@@ -1,3 +1,5 @@
+import { TODAY_DATE } from './Constatns';
+
 export const getGreetingTime = (date = new Date()) => {
   const hour = date.getHours();
   let greeting;
@@ -13,16 +15,19 @@ export const getGreetingTime = (date = new Date()) => {
   return greeting;
 };
 
-export const getDateFull = (date = new Date()) => {
+export const getDateFull = (date = TODAY_DATE) => {
   const formatter = new Intl.DateTimeFormat('en-US', {
     weekday: 'long',
     month: 'short',
     day: 'numeric',
   });
 
-  return formatter.format(date);
+  return formatter.format(new Date(date));
 };
-export const getDateMonthDay = (date = new Date()) => {
+
+export const getDateMonthDay = (currentDate: string) => {
+  const date = new Date(currentDate);
+  
   const formatter = new Intl.DateTimeFormat('en-US', {
     month: 'short',
     day: 'numeric',
@@ -30,6 +35,7 @@ export const getDateMonthDay = (date = new Date()) => {
 
   return formatter.format(date);
 };
+
 export const getDateMonth = (date = new Date()) => {
   const formatter = new Intl.DateTimeFormat('en-US', {
     month: 'long',
@@ -38,7 +44,7 @@ export const getDateMonth = (date = new Date()) => {
   return formatter.format(date);
 };
 
-export const getRelativeDate = (dateFromState: string) => {
+export const getDateRelative = (dateFromState: string) => {
   const date = new Date(dateFromState);
   const today = new Date();
   const diffTime = date.getTime() - today.getTime();

@@ -1,12 +1,12 @@
 import React from 'react';
-import Greeting from '../../Atoms/Greeting';
+import HeaderPrimary from '../../Atoms/Headers/HeaderPrimary';
 import StatusBar from '../../Atoms/StatusBar';
 import style from './style';
 
 const Header: React.FC = () => {
   return (
     <header className={style.header}>
-      <Greeting />
+      <HeaderPrimary />
       <StatusBar />
     </header>
   );

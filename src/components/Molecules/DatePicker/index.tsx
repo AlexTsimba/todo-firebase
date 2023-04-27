@@ -1,40 +1,51 @@
-import React, { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { Todo } from '../../../Types/Todo';
-import { changeDuedate } from '../../../Store/todosSlice';
-import useOnClickOutside from '../../../utils/Hooks/useOnClickOutside';
-import ButtonDate from '../../Atoms/Buttons/ButtonDate';
+import React, { memo, useCallback, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import CalendarPopup from '../../Atoms/CalendarPopup';
+import useOnClickOutside from '../../../utils/Hooks/useOnClickOutside';
+import { getDateMonthDay } from '../../../utils/DateTimeFormat';
+import ButtonDate from '../../Atoms/Buttons/ButtonDate';
 
-interface DatePickerProps {
-  todo: Todo;
+interface InputDateProps {
+  dueDate: string;
+  setDueDate: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const DatePicker: React.FC<DatePickerProps> = ({ todo }) => {
+const DatePicker: React.FC<InputDateProps> = ({ dueDate, setDueDate }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { dueDate } = todo;
-  const dispatch = useDispatch();
+  const rootElement = document.getElementById('main');
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   useOnClickOutside(wrapperRef, () => setIsOpen(false));
 
-  const handleDateChange = (date: string) => {
-    dispatch(changeDuedate({ id: todo.id, dueDate: date }));
-
-    setIsOpen(false);
-  };
+  const handleDatechange = useCallback(
+    (date: string) => {
+      setDueDate(date);
+      setIsOpen(false);
+    },
+    [setDueDate, setIsOpen]
+  );
 
   return (
-    <div ref={wrapperRef} className="relative">
-      <ButtonDate onClick={setIsOpen} date={dueDate} isOpen={isOpen} />
-      <CalendarPopup
+    <div>
+      <ButtonDate
+        onClick={setIsOpen}
+        date={dueDate}
         isOpen={isOpen}
-        dueDate={dueDate}
-        handleChange={handleDateChange}
+        format={getDateMonthDay}
       />
+      {rootElement &&
+        createPortal(
+          <div ref={wrapperRef} className="absolute top-[10%] right-[30%]">
+            <CalendarPopup
+              isOpen={isOpen}
+              dueDate={dueDate}
+              handleChange={handleDatechange}
+            />
+          </div>,
+          rootElement
+        )}
     </div>
   );
 };
 
-export default DatePicker;
+export default memo(DatePicker);
