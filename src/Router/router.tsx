@@ -8,7 +8,7 @@ import UpcomingList from '../components/Templates/Upcoming';
 
 const router = createBrowserRouter([
   {
-    path: '/todo-firebase',
+    path: '/',
     element: <Layout />,
     children: [
       {
