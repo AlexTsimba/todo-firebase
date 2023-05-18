@@ -7,7 +7,7 @@ const style = {
     'transform',
     'rounded-lg',
     'text-lg leading-normal text-color-text-primary',
-    'hover:bg-primary-button hover:scale-110'
+    'bg-primary-button hover:bg-primary-button hover:scale-110'
   ),
   insideInput: classNames(
     'px-4 py-2',
@@ -20,6 +20,7 @@ const style = {
   draggable: classNames('cursor-grab', 'active:cursor-grabbing'),
   roundTopRight: classNames('rounded-tr-2xl'),
   roundBototmRight: classNames('rounded-br-2xl'),
+  delete: classNames('py-2 bg-danger-primary hover:bg-danger-secondary text-white px-20')
 };
 
 export default style;

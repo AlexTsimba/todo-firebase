@@ -3,11 +3,11 @@ import { nanoid } from 'nanoid';
 import { PayloadAction } from '@reduxjs/toolkit';
 
 import { Todo } from '../Types/Todo';
-import  {TODAY_DATE } from '../utils/Constatns';
+import { TODAY_DATE } from '../utils/Constatns';
 
 export const addTodoReducer = (
   state: { todos: Todo[] },
-  action: PayloadAction<{ name: string, dueDate: string }>
+  action: PayloadAction<{ name: string; dueDate: string }>
 ) => {
   const newTodo = {
     name: action.payload.name,
@@ -15,7 +15,8 @@ export const addTodoReducer = (
     completed: false,
     id: nanoid(),
     dueDate: action.payload.dueDate,
-    completionDate:'',
+    description: '',
+    completionDate: '',
   };
   state.todos.unshift(newTodo);
 };
@@ -37,6 +38,22 @@ export const toggleCompleteReducer = (
         ...todo,
         completed: !todo.completed,
         completionDate: TODAY_DATE,
+      };
+    }
+    return {
+      ...todo,
+    };
+  });
+};
+
+export const updateTodoReducer = (
+  state: { todos: Todo[] },
+  action: PayloadAction<Todo>
+) => {
+  state.todos = state.todos.map((todo) => {
+    if (todo.id === action.payload.id) {
+      return {
+        ...action.payload,
       };
     }
     return {

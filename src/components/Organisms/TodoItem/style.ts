@@ -7,7 +7,7 @@ const style = {
     'relative',
     'rounded-lg',
     'bg-slate-50',
-    'first:rounded-t-3xl last:rounded-b-3xl'
+    'first:rounded-t-3xl last:rounded-b-3xl',
   ),
   content: classNames(
     'relative',

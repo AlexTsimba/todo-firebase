@@ -10,7 +10,6 @@ export const selectCompletedTodos = (state: RootState) =>
   state.todos.todos.filter((todo) => todo.completed);
 
 export const selectTodayTodos = (state: RootState) => {
-
   return state.todos.todos.filter(
     (todo) => todo.dueDate === TODAY_DATE && todo.completed === false
   );
@@ -18,12 +17,9 @@ export const selectTodayTodos = (state: RootState) => {
 
 export const selectUpcomingTodos = (state: RootState) => {
   const today = new Date();
-  
-  return state.todos.todos.filter(
-    (todo) => {
-      const dueDate = new Date(todo.dueDate);
-      return dueDate.getTime() > today.getTime() && !todo.completed;
-    }
-  );
-};
 
+  return state.todos.todos.filter((todo) => {
+    const dueDate = new Date(todo.dueDate);
+    return dueDate.getTime() > today.getTime() && !todo.completed;
+  });
+};

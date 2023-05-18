@@ -10,16 +10,13 @@ const Layout = () => {
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <main
         id="main"
-        className="drawer-content mx-auto mt-20 w-full min-w-[420px] max-w-[768px] px-6 transition duration-300 md:px-4 2xl:max-w-[1024px]"
+        className="drawer-content mx-auto mt-20 w-full min-w-[420px] max-w-[768px] px-6 transition-all duration-300 md:px-4 2xl:max-w-[1024px]"
       >
-        <label
-          htmlFor="my-drawer-2"
-          className="absolute top-6 left-6 lg:hidden"
-        >
-          <ButtonBurger />
-        </label>
         <Outlet />
       </main>
+      <label htmlFor="my-drawer-2" className="absolute top-6 left-6 lg:hidden">
+        <ButtonBurger />
+      </label>
       <Sidebar />
     </div>
   );

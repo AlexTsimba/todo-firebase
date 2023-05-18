@@ -7,19 +7,24 @@ import ButtonDate from '../../Atoms/Buttons/ButtonDate';
 
 interface InputDateProps {
   dueDate: string;
-  setDueDate: React.Dispatch<React.SetStateAction<string>>;
+  setDueDate: (date: string) => void;
+  parent: string;
 }
 
-const DatePicker: React.FC<InputDateProps> = ({ dueDate, setDueDate }) => {
+const DatePicker: React.FC<InputDateProps> = ({
+  dueDate,
+  setDueDate,
+  parent,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const rootElement = document.getElementById('main');
+  const parentElement = document.getElementById(parent);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   useOnClickOutside(wrapperRef, () => setIsOpen(false));
 
   const handleDatechange = useCallback(
-    (date: string) => {
-      setDueDate(date);
+    (date: object) => {
+      setDueDate(date.toString());
       setIsOpen(false);
     },
     [setDueDate, setIsOpen]
@@ -27,13 +32,8 @@ const DatePicker: React.FC<InputDateProps> = ({ dueDate, setDueDate }) => {
 
   return (
     <div>
-      <ButtonDate
-        onClick={setIsOpen}
-        date={dueDate}
-        isOpen={isOpen}
-        format={getDateMonthDay}
-      />
-      {rootElement &&
+      <ButtonDate onClick={setIsOpen} date={dueDate} format={getDateMonthDay} />
+      {parentElement &&
         createPortal(
           <div ref={wrapperRef} className="absolute top-[10%] right-[30%]">
             <CalendarPopup
@@ -42,7 +42,7 @@ const DatePicker: React.FC<InputDateProps> = ({ dueDate, setDueDate }) => {
               handleChange={handleDatechange}
             />
           </div>,
-          rootElement
+          parentElement
         )}
     </div>
   );

@@ -17,6 +17,8 @@ module.exports = {
         'color-text-disabled': '#A6ABB2',
         'color-calendar-primary': '#f2f5f9',
         'color-calendar-secondary': '#aba8a8',
+        'danger-primary': '#ef4444',
+        'danger-secondary': '#DC2638',
       },
       fontSize: {
         '4xl': ['clamp(24px, 3vw, 36px)', '36px'],

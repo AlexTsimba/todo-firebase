@@ -10,13 +10,15 @@ interface TodoLabelProps {
 }
 
 const TodoLabel: React.FC<TodoLabelProps> = ({ todo }) => {
-  const [isChecked, setIsChecked] = useState(todo.completed);
+  const { completed, order, name, id } = todo;
+
+  const [isChecked, setIsChecked] = useState(completed);
   const dispatch = useDispatch();
 
-  const handleToggleComplete = (id: string) => {
+  const handleToggleComplete = (todoId: string) => {
     setIsChecked(true);
     setTimeout(() => {
-      dispatch(toggleComplete({ id }));
+      dispatch(toggleComplete({ id: todoId }));
     }, 1200);
   };
 
@@ -30,13 +32,13 @@ const TodoLabel: React.FC<TodoLabelProps> = ({ todo }) => {
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-tabindex
     <div id="checkbox" onKeyDown={handleKeyPress} tabIndex={0}>
       <input
-        id={todo.order.toString()}
+        id={order.toString()}
         type="checkbox"
-        onChange={() => handleToggleComplete(todo.id)}
+        onChange={() => handleToggleComplete(id)}
         checked={isChecked}
       />
-      <label htmlFor={todo.order.toString()}>
-        <h2 className=".. truncate">{todo.name}</h2>
+      <label htmlFor={order.toString()}>
+        <h2 className=".. truncate">{name}</h2>
       </label>
     </div>
   );

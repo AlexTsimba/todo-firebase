@@ -15,6 +15,7 @@ const AddTodoForm: React.FC = () => {
   const [input, setInput] = useState<string>('');
   const [dueDate, setDueDate] = useState<string>(TODAY_DATE);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const parentId = 'main';
 
   const dispatch = useDispatch();
   const animation = useAnimation();
@@ -32,7 +33,7 @@ const AddTodoForm: React.FC = () => {
       dispatch(addTodo(newTodo));
       setIsSubmitted(true);
 
-      await animation.start({ y: 90 });
+      await animation.start({ y: 90, opacity: 0.2 });
       await animation.start({ opacity: 0 });
       await animation.start({ y: 0 });
 
@@ -60,7 +61,11 @@ const AddTodoForm: React.FC = () => {
             '-translate-y-1/2 transform'
           )}
         >
-          <DatePicker dueDate={dueDate} setDueDate={setDueDate} />
+          <DatePicker
+            dueDate={dueDate}
+            setDueDate={setDueDate}
+            parent={parentId}
+          />
           <ButtonAdd />
         </div>
       )}

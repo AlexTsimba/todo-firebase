@@ -20,20 +20,15 @@ const DateChanger: React.FC<DateChangerProps> = ({ todo }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   useOnClickOutside(wrapperRef, () => setIsOpen(false));
 
-  const handleDateChange = (date: string) => {
-    dispatch(changeDuedate({ id: todo.id, dueDate: date }));
+  const handleDateChange = (date: object) => {
+    dispatch(changeDuedate({ id: todo.id, dueDate: date.toString() }));
 
     setIsOpen(false);
   };
 
   return (
     <div ref={wrapperRef} className="relative">
-      <ButtonDate
-        onClick={setIsOpen}
-        date={dueDate}
-        isOpen={isOpen}
-        format={getDateRelative}
-      />
+      <ButtonDate onClick={setIsOpen} date={dueDate} format={getDateRelative} />
       <div className="absolute right-0 z-10">
         <CalendarPopup
           isOpen={isOpen}

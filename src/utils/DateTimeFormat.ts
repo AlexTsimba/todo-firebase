@@ -27,7 +27,7 @@ export const getDateFull = (date = TODAY_DATE) => {
 
 export const getDateMonthDay = (currentDate: string) => {
   const date = new Date(currentDate);
-  
+
   const formatter = new Intl.DateTimeFormat('en-US', {
     month: 'short',
     day: 'numeric',

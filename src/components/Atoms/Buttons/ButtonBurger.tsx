@@ -4,11 +4,14 @@ import { Bars3BottomLeftIcon } from '@heroicons/react/24/outline';
 import style from './style';
 
 const ButtonBurger = () => {
+  const toggleSidebar = () => document.getElementById('my-drawer-2')?.click();
+
   return (
     <button
       type="button"
       className={style.button}
-      onClick={() => document.getElementById('my-drawer-2')?.click()}
+      onClick={toggleSidebar}
+      aria-label="Toggle sidebar"
     >
       <Bars3BottomLeftIcon className={style.icon} />
     </button>
