@@ -36,7 +36,7 @@ export const {
   reorderTodos,
   toggleComplete,
   changeDuedate,
-  updateTodo
+  updateTodo,
 } = todosSlice.actions;
 
 export default todosSlice.reducer;

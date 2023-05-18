@@ -20,7 +20,9 @@ const style = {
   draggable: classNames('cursor-grab', 'active:cursor-grabbing'),
   roundTopRight: classNames('rounded-tr-2xl'),
   roundBototmRight: classNames('rounded-br-2xl'),
-  delete: classNames('py-2 bg-danger-primary hover:bg-danger-secondary text-white px-20')
+  delete: classNames(
+    'py-2 bg-danger-primary hover:bg-danger-secondary text-white px-20'
+  ),
 };
 
 export default style;
