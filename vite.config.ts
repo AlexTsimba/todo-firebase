@@ -6,6 +6,6 @@ dotenv.config();
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/todo-firebase',
+  // base: '/todo-firebase',
   plugins: [react()],
 });
