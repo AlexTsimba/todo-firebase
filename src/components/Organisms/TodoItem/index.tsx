@@ -14,6 +14,7 @@ import TodoLabel from '../../Atoms/TodoLabel';
 import style from './style';
 import TodoDetails from '../TodoDetails';
 import useOnClickOutside from '../../../utils/Hooks/useOnClickOutside';
+import TodoActions from '../../Molecules/TodoActions';
 
 interface TodoItemProps {
   todo: Todo;
@@ -34,32 +35,33 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, index, todosLength }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   useOnClickOutside(wrapperRef, () => setDetailsIsOpen(false));
 
-  const handleOpenModal = useCallback(() => {
+  const handleOpenDetails = useCallback(() => {
     setDetailsIsOpen(true);
   }, []);
 
   return (
     <Reorder.Item
       className={style.container}
+      value={todo}
+      style={{ boxShadow, y }}
       key={todo.id}
       dragListener={false}
       dragControls={controls}
-      value={todo}
-      style={{ boxShadow, y }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.2, delay: 0.2 }}
     >
       <motion.div
-        key={todo.dueDate}
         className={style.content}
+        key={todo.dueDate}
         transition={{ duration: 0.5, delay: 0.3 }}
       >
         <TodoLabel todo={todo} />
         <div className={style.buttonGroup}>
-          <button onClick={handleOpenModal}>Open</button>
+          <button onClick={handleOpenDetails}>Open</button>
           <DateChanger todo={todo} />
           <ButtonReorder todosLength={todosLength} controls={controls} />
+          <TodoActions />
           <ButtonDelete
             isFirst={isFirstChild}
             isLast={isLastChild}
