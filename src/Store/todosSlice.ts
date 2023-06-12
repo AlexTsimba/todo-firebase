@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Todo } from '../Types/Todo';
+import { TodosState } from '../Types/TodosState';
 import {
   addTodoReducer,
   deleteTodoReducer,
@@ -7,14 +7,15 @@ import {
   reorderTodosReducer,
   changeDueDateReducer,
   updateTodoReducer,
+  setSelectedTodoIdReducer,
+  setEditingTodoIdReducer,
 } from './todosReducers';
 
-export interface TodosState {
-  todos: Todo[];
-}
 
 const initialState: TodosState = {
   todos: [],
+  editingTodoId: null,
+  selectedTodoId: null,
 };
 
 export const todosSlice = createSlice({
@@ -27,6 +28,8 @@ export const todosSlice = createSlice({
     reorderTodos: reorderTodosReducer,
     changeDuedate: changeDueDateReducer,
     updateTodo: updateTodoReducer,
+    setSelectedTodoId: setSelectedTodoIdReducer,
+    setEditingTodoId: setEditingTodoIdReducer,
   },
 });
 
@@ -37,6 +40,8 @@ export const {
   toggleComplete,
   changeDuedate,
   updateTodo,
+  setSelectedTodoId,
+  setEditingTodoId,
 } = todosSlice.actions;
 
 export default todosSlice.reducer;

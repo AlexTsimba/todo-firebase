@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import { PayloadAction } from '@reduxjs/toolkit';
 
 import { Todo } from '../Types/Todo';
+import { TodosState } from '../Types/TodosState';
 import { TODAY_DATE } from '../utils/Constatns';
 
 export const addTodoReducer = (
@@ -84,4 +85,18 @@ export const changeDueDateReducer = (
       ...todo,
     };
   });
+};
+
+export const setEditingTodoIdReducer = (
+  state: TodosState,
+  action: PayloadAction<string | null>
+) => {
+  state.editingTodoId = action.payload;
+};
+
+export const setSelectedTodoIdReducer = (
+  state: TodosState,
+  action: PayloadAction<string | null>
+) => {
+  state.selectedTodoId = action.payload;
 };

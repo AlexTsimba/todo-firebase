@@ -2,12 +2,14 @@ import classNames from 'classnames';
 
 const style = {
   button: classNames(
-    'px-2 py-1',
+    'h-10',
+    'px-2 py-1', 
     'transition duration-300 ease-in-out',
     'transform',
     'rounded-lg',
     'text-lg leading-normal text-color-text-primary',
-    'bg-primary-button hover:bg-primary-button hover:scale-110'
+    'bg-primary-button hover:bg-primary-button hover:scale-110',
+    'active:bg-violet-700 active:text-slate-50'
   ),
   insideInput: classNames(
     'px-4 py-2',

@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Todo } from '../../../Types/Todo';
 import useOnClickOutside from '../../../utils/Hooks/useOnClickOutside';
 import ButtonClose from '../../Atoms/Buttons/ButtonClose';
@@ -14,19 +14,25 @@ import TodoName from './TodoName';
 import Checkbox from './Checkbox';
 import Description from './Description';
 import DueDate from './DueDate';
+import { RootState } from '../../../Store/store';
+import { selectTodoById } from '../../../Store/todosSelectors';
 
 interface TodoDetailsProps {
-  todo: Todo;
+  todoId: string;
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const TodoDetails: React.FC<TodoDetailsProps> = ({
-  todo,
+  todoId,
   isOpen,
   setIsOpen,
 }) => {
-  const [details, setDetails] = useState<Todo>({ ...todo });
+  const todo = useSelector((state: RootState) => selectTodoById(state, todoId));
+
+  // todo!todo!todo!todo!todo!
+
+  const [details, setDetails] = useState<Todo>({ ...todo! });
   const { id, name, description, dueDate, completed } = details;
 
   const rootElement = document.getElementById('root');
@@ -44,7 +50,7 @@ const TodoDetails: React.FC<TodoDetailsProps> = ({
   );
 
   const closeTodoDetails = () => {
-    const isDetailsChanged = compareTodos(details, todo);
+    const isDetailsChanged = compareTodos(details, todo!);
 
     if (!isDetailsChanged) {
       setIsOpen(false);
@@ -57,7 +63,7 @@ const TodoDetails: React.FC<TodoDetailsProps> = ({
   useOnClickOutside(wrapperRef, closeTodoDetails);
 
   useEffect(() => {
-    setDetails({ ...todo });
+    setDetails({ ...todo! });
   }, [todo]);
 
   return (

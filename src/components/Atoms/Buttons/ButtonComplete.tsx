@@ -12,8 +12,8 @@ interface ButtonDeleteProps {
 const ButtonComplete: React.FC<ButtonDeleteProps> = ({ id }) => {
   const dispatch = useDispatch();
 
-  const handleTodoCompletion = (idToDelete: string) => {
-    dispatch(toggleComplete({ id: idToDelete }));
+  const handleTodoCompletion = (idToComplete: string) => {
+    dispatch(toggleComplete({ id: idToComplete }));
   };
 
   return (
