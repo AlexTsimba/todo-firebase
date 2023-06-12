@@ -23,3 +23,8 @@ export const selectUpcomingTodos = (state: RootState) => {
     return dueDate.getTime() > today.getTime() && !todo.completed;
   });
 };
+
+export const selectTodoById = (state: RootState, id: string) =>
+  state.todos.todos.find((todo) => todo.id === id);
+
+export const selectedId = (state: RootState) => state.todos.selectedTodoId;

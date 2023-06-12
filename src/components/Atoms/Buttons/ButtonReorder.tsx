@@ -15,11 +15,12 @@ const ButtonReorder: React.FC<ButtonReorderProps> = ({
   todosLength,
 }) => {
   if (todosLength < 2) {
-    return <p />;
+    return null;
   }
 
   return (
     <button
+      type="button"
       className={classNames(style.button, style.draggable)}
       onPointerDown={(e) => controls.start(e)}
     >

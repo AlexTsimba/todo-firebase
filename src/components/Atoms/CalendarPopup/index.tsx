@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { getDateMonth } from '../../../utils/DateTimeFormat';
 import 'react-calendar/dist/Calendar.css';
 import './style.scss';
+import motionConfig from '../../motionConfig';
 
 interface CalendarPopupProps {
   dueDate: string;
@@ -20,13 +21,7 @@ const CalendarPopup: React.FC<CalendarPopupProps> = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
-          key={dueDate}
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ ease: 'easeInOut', duration: 0.3 }}
-        >
+        <motion.div key={dueDate} {...motionConfig.popup}>
           <Calendar
             navigationLabel={({ date }) => getDateMonth(date)}
             formatShortWeekday={() => ''}

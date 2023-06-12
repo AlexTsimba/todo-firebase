@@ -16,7 +16,7 @@ const style = {
     'font-sans text-lg',
     'transition duration-300 ease-in-out'
   ),
-  buttonGroup: classNames('flex', 'gap-2', 'lg:gap-4'),
+  buttonGroup: classNames('flex', 'gap-2'),
 };
 
 export default style;
